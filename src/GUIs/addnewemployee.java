@@ -10,6 +10,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
+import libraryFunctions.helper;
 import libraryFunctions.repository;
 
 /**
@@ -203,7 +204,7 @@ public class addnewemployee extends javax.swing.JFrame {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate hiredate = LocalDate.parse(HireDatetext.getText(), formatter);
             //Validation to check if input are sensible and empty
-            Employee NewEmployee = new Employee(EmployeeIDtext.getText(), Firstnametext.getText(), LastNametext.getText(), Passwordtext.getText(), Departmenttext.getText(), Officetext.getText(), phonenumbertext.getText(), Date.valueOf(hiredate), Double.parseDouble(Hourlyratetext.getText()));
+            Employee NewEmployee = new Employee(EmployeeIDtext.getText(), Firstnametext.getText(), LastNametext.getText(), helper.hashPassword(Passwordtext.getText()), Departmenttext.getText(), Officetext.getText(), phonenumbertext.getText(), Date.valueOf(hiredate), Double.parseDouble(Hourlyratetext.getText()));
             
             repository.insertNewEmployee(NewEmployee);
             
